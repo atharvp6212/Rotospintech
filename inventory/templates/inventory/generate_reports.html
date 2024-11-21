@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Title{% endblock %}</title>
+</head>
+<style>
+    .container {
+	width: 80%;
+	margin: 0 auto;
+    
+}
+
+header {
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    background-color: #212121; 
+     
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+  
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 10px;
+  position: relative;
+  align-items: center;
+}
+
+nav a {
+  color: #c8c8c8;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+
+
+nav a:hover::before {
+  width: 100%;
+}
+nav a::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #ff0000;
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+</style>
+
+<body>
+    <header>
+        <div class="container">
+           
+          <nav>
+            <ul>
+            <!-- <li>{{ user.username }}</li> -->
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <h1>{% block content %}Content{% endblock %}</h1>
+</body>
+</html>

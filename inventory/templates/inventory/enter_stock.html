@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Stock</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    /* Container for the stock page */
+.stock-container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Stock form heading */
+.stock-container h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input fields styling */
+form input {
+    
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Update Stock button styling */
+.update-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for button */
+.update-button:hover {
+    background-color: #1f1f1f;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .stock-container {
+        width: 90%;
+        
+    }
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+    
+}
+
+header {
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    background-color: #212121; 
+     
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+  
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 10px;
+  position: relative;
+  align-items: center;
+}
+
+nav a {
+  color: #c8c8c8;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+
+
+nav a:hover::before {
+  width: 100%;
+}
+nav a::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #ff0000;
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+ 
+ </style>
+<body>
+    <header>
+        <div class="container">
+           
+          <nav>
+            <ul>
+            <!-- <li>{{ user.username }}</li> -->
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <div class="stock-container">
+        <h1>Enter Stock</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="update-button" type="submit">Update Stock</button>
+        </form>
+    </div>
+</body>
+</html>

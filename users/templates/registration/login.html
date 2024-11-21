@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    /* Existing styles */
+    body {
+        background: linear-gradient(135deg, #0084ff, #ff0040);
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        max-width: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 30px 40px;
+    }
+
+    .form-container h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #3a6186;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+        background-color: #2b506b;
+    }
+
+    .welcome-message p {
+        color: rgb(24, 24, 24);
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .superadmin-link {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .superadmin-link a {
+        color: #0084ff;
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+    }
+
+    .superadmin-link a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .login-container {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .welcome-message p {
+            font-size: 16px;
+        }
+    }
+</style>
+<body>
+    <div class="login-container">
+        <div class="form-container">
+            <h2>Login to Rotopsin Tech</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="login-button" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="welcome-message">
+            <p>Welcome to Rotopsin Tech!</p>
+        </div>
+
+        <!-- Superadmin link added here -->
+        <div class="superadmin-link">
+            <p><a href="{% url 'admin:login' %}">Superadmin Login</a></p>
+        </div>
+    </div>  
+</body>
+</html>

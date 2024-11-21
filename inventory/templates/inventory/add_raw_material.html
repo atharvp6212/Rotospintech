@@ -1,0 +1,167 @@
+<!-- inventory/templates/inventory/add_raw_material.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Raw Material</title>
+</head>
+<style>/* General body styling */
+    body {
+        font-family: 'Arial', sans-serif; /* Modern font */
+    background-color: #f4f4f4; /* Light background */
+    color:#1f1f1f; /* Dark text color */
+    margin: 0;
+    }
+    
+    /* Container for the form */
+    .form-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Form heading styling */
+    .form-container h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 30px;
+    }
+    
+    /* Form input fields styling */
+    form input, form select, form textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    
+    /* Button styling */
+    .submit-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    /* Button hover effect */
+    .submit-button:hover {
+        background-color: rgb(86, 86, 86);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .form-container {
+            width: 90%;
+        }
+    }
+    
+    .container {
+	width: 80%;
+	margin: 0 auto;
+    
+}
+
+header {
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    background-color: #212121; 
+     
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+  
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 10px;
+  position: relative;
+  align-items: center;
+}
+
+nav a {
+  color: #c8c8c8;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+
+
+nav a:hover::before {
+  width: 100%;
+}
+nav a::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #ff0000;
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+    </style>
+
+<body>
+    <header>
+        <div class="container">
+           
+          <nav>
+            <ul>
+            <!-- <li>{{ user.username }}</li> -->
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <div class="form-container">
+        <h1>Add Raw Material</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="submit-button" type="submit">Add Raw Material</button>
+        </form>
+    </div>
+</body>
+</html>
