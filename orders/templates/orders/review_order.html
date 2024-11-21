@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Order</title>
+</head>
+<body>
+    <h2>Review Order</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Required and Remaining Raw Materials</h3>
+        <ul>
+            {% for material in required_materials.values %}
+                <li>{{ material.name }}: Required - {{ material.total_quantity_required }}, Remaining - {{ material.remaining_quantity }}</li>
+            {% endfor %}
+        </ul>
+        <button type="submit" name="confirm">Place Order</button>
+    </form>
+</body>
+</html>

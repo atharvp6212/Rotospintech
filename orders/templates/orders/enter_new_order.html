@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter New Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter New Order for Selected Sub-Parts</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ order_form.as_p }}
+        {% for part in selected_sub_parts %}
+            <div id="sub-part-{{ part.id }}">
+                <h3>Sub-Part: {{ part.name }}</h3>
+                <label for="quantity_{{ part.id }}">Quantity:</label>
+                <input type="number" id="quantity_{{ part.id }}" name="quantity_{{ part.id }}"  >
+                <label for="raw_material_{{ part.id }}">Select Raw Material:</label>
+                <select id="raw_material_{{ part.id }}" name="raw_material_{{ part.id }}" >
+                    {% for raw_material in part.raw_materials.all %}
+                        <option value="{{ raw_material.id }}">{{ raw_material.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" name="add_sub_part" value="{{ part.id }}">Add</button>
+                <hr>
+            </div>
+        {% endfor %}
+        
+        {% if review %}
+            <h3>Required and Remaining Raw Materials</h3>
+            <ul>
+                {% for material in required_materials.values %}
+                    <li>{{ material.name }}: Required - {{ material.total_quantity_required }}, Remaining - {{ material.remaining_quantity }}</li>
+                {% endfor %}
+            </ul>
+            <button type="submit" name="confirm">Place Order</button>
+        {% else %}
+            <button type="submit" name="calculate">Save Order</button>
+        {% endif %}
+    </form>
+</body>
+</html>

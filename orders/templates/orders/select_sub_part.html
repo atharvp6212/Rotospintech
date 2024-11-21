@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Sub-Part</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .container {
+	width: 80%;
+	margin: 0 auto;
+    
+}
+
+header {
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    background-color: #212121; 
+     
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+  
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 10px;
+  position: relative;
+  align-items: center;
+}
+
+nav a {
+  color: #c8c8c8;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+.tb{
+    padding: 20px;
+padding-left: 10%;
+padding-right: 10%;
+border-radius: 50px;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+nav a::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #ff0000;
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+    </style>
+</head>
+<body>
+  <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+  </header>
+  <h2>Select Sub-Part</h2>
+  <form method="post" action="{% url 'select_sub_part' %}">
+    {% csrf_token %}
+    <div class="tb">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Sub-Part Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sub_part in sub_parts %}
+                    <tr>
+                        <!-- Removed 'required' attribute -->
+                        <td><input type="checkbox" name="sub_parts" value="{{ sub_part.id }}"></td>
+                        <td>{{ sub_part.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Next</button>
+    </div>
+</form>        
+</body>
+</html>
